@@ -1,0 +1,7 @@
+{
+  "name": "物品整理清單",
+  "description": "簡潔高效的物品管理應用程式，讓您輕鬆分類、整理並追蹤家中的所有物。",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
