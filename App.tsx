@@ -24,8 +24,8 @@ const App: React.FC = () => {
     try {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
     } catch (e) {
+      // 僅在後台記錄錯誤，不再彈出警示視窗打斷使用者
       console.error("Storage failed:", e);
-      alert("儲存空間不足（手機記憶體或瀏覽器限制）。請嘗試刪除舊項目或使用較小的照片。");
     }
   };
 
