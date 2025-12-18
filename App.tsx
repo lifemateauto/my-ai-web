@@ -21,7 +21,12 @@ const App: React.FC = () => {
   const totalStock = useMemo(() => items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0), [items]);
 
   const saveToLocal = (data: Item[]) => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {
+      console.error("Storage failed:", e);
+      alert("儲存空間不足（手機記憶體或瀏覽器限制）。請嘗試刪除舊項目或使用較小的照片。");
+    }
   };
 
   const loadFromLocal = () => {
@@ -115,6 +120,8 @@ const App: React.FC = () => {
 
     setItems(updatedItems);
     saveToLocal(updatedItems);
+    
+    // 強制關閉彈窗並清空狀態
     setEditingItem(null);
     setIsModalOpen(false);
   };
